@@ -1,0 +1,102 @@
+html, body {
+  height:100%;
+  width:100%;
+  background-color: #94d2bd;
+}
+
+/* Sections of Layout
+-------------------------------------- */
+/* Generic styles for demo purposes
+-------------------------------------- */
+table, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.container, h1 {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;;
+  height:98%;
+  width:98%;
+}
+
+.container > * {
+  background-color: #e9d8a6;
+  padding: 1em;
+}
+
+/* Typically, you wouldn't specify a height or min-height on this, instead allowing your actual content (i.e., text, images, etc.) to dictate the height of your content area. But since this example has very minimal content, I've set a min-height to mimic a taller content area. */
+.content {
+  min-height: 40%;
+  overflow-y: scroll;
+}
+
+/* Layout is stacked vertically by default (for narrower viewports), so give some breathing room between the sections. */
+/* Select all elements where parent is a container */
+.container > * {
+  margin-bottom: 2%;
+}
+
+/* Now let's apply grid for wider viewports. */
+@media screen and (min-width: 40em) {
+  .container > * {
+    margin-bottom: 0;
+  }
+  /* Define the grid */
+  .container {
+    display: grid;
+    grid-template-columns: 18% 60% 18%;
+    grid-gap: 2% 2%;
+    grid-template-rows: 20% auto 10%;
+  }
+  /* Place items on the grid */
+  .header {
+    grid-column: 1 / span 3;
+  }
+  .tab {
+    grid-row-end: span 2;
+  }
+  .content {
+    grid-column: 2;
+  }
+
+}
+
+.tab {
+  overflow:hidden;
+  
+  background-color: #e9d8a6;
+}
+
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+  font-family:inherit;
+}
+
+.tab button:hover {
+  background-color: #ee9b00;
+}
+
+.tab button.active {
+  background-color: #ee9b00;
+}
+
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+}
+
+iframe:focus {
+  outline: none;
+}
+
+iframe[seamless] {
+  display: block;
+}
