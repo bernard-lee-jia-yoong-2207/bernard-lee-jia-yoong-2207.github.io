@@ -1,153 +1,85 @@
 <!DOCTYPE html>
-<meta charset="UTF-8">
+<html lang="en">
 
-<html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="css/appstyle1.css">
-        <title>My Homepage</title>
-        <script defer type="text/javascript" src="appscripts/main.js">
-        </script>
-    </head>
+<head>
+    <link rel="stylesheet" type="text/css" href="css/appstyle.css">
+    <script defer type="text/javascript" src="appscripts/main.js"></script>
+    <script defer type="text/javascript" src="appscripts/maze.js"></script>
+    <script defer type="text/javascript" src="appscripts/diff.js"></script>
+    <script defer type="text/javascript" src="appscripts/hangman.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Aclonica' rel='stylesheet'>
+</head>
 
-  <body>
-    
-    <div class="container">
-      <header class="header">
-        <h1>Welcome to Bernard Lee's Homepage!</h1>
-      </header>
+<body>
+    <p>
+        <a href="https://docs.google.com/document/d/1slQ-8YWUT4HP1BiSEimuq4Rm6vm-UK2AhcAsOGUFMZU/edit?usp=sharing">Project Document</a>
+        <a href="https://www.figma.com/proto/naZYfyYKSS1UsXVXlHyAUE/2207-storyboard?node-id=1-78&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=1%3A10">Storyboard</a>
+    </p>
+    <!--default content-->
+    <div class="container" id="defaultContainer" width="795.6px" height="573.3px">
+        <canvas class="defaultContent" id="mainCanvas" width="795.6px" height="573.3px"></canvas>
 
-      <nav class="tab">
-        <button class="tablinks" onclick="openTab(event,'Challenges')">Challenges/Assignment</button>
-        <button class="tablinks" onclick="openTab(event,'Codealong')">Code Alongs</button>
-        <button class="tablinks" onclick="openTab(event,'Project')">Final Project</button>
-      </nav>
+        <!--popups-->
+        <div class="popup">
+            <div class="popUpText" id="popup1">
+                <p class="prompts" id="promptText1">Welcome. I assume you’re here because you saw the notice. The knight
+                    needs your help urgently, can you pass the test?</p>
+                <button class="defaultButtonStyle" id="beginButton">Begin</button>
+            </div>
+            <div class="sidepopup" id="popup2">
+                <p class="prompts" id="promptText2">Follow the map to complete the tasks and help the knight get to the
+                    treasure!</p>
+            </div>
+            <div class="sidepopup" id="popup3">
+                <p class="prompts" id="promptText3">Complete the tasks in order and within the time limit. Good luck!
+                </p>
+            </div>
+        </div>
 
-      <article class="content">
-      <!--default content-->
-      <div class="defaultContent">
-        <p>This is a website for the module NM2207 Computational Media Literacy</p>
-        <p>Tap on the tabs on the left to view my assignments!</p>
-      </div>
+        <!--tabs-->
+        <div class="tab">
+            <button class="gameButton" id="Game_1" onclick="openGame(event,'mazeGame')" disabled>1</button>
+            <button class="gameButton" id="Game_2" onclick="openGame(event,'diffGame')" disabled>2</button>
+            <button class="gameButton" id="Game_3" onclick="openGame(event,'manGame')" disabled>3</button>
+        </div>
 
-      <!--codealong content-->
-      <div class="tabcontent" id='Codealong'>
-        <li>
-          <a href="Session07.codealong/barplot/index.html">Session 7 Codealong Bar Plot</a>
-        </li>
-        <li>
-          <a href="Session07.codealong/00-Starting point/index.html">Session 7 Codealong Line Chart</a>
-        </li>
-        <li>
-          <a href="Session08.codealong/happinessbarChart.html">Session 8 Codealong</a>
-        </li>
-        <li>
-          Reflection
-        </li>
-        <table>
-          <tr>
-            <td><strong>What I've learnt</strong></td>
-            <td><strong>Errors encountered</strong></td>
-          </tr>
-          <tr>
-            <td>Their happiness score vary but not to the extent that they cannot be represented on the same axes</td>
-            <td>Some data were missing, I found out that it can be changed to 'undefine' to make sure the line is not shortened</td>
-          </tr>
-          <tr>
-            <td>Some countries generally score a lot higher than others, for example United States</td>
-            <td>The lines were indistinguishable, I changed the colour of each line to make them easier to be told apart</td>
-          </tr>
-          <tr>
-            <td>The happiness score of some countries varied a lot throughout the years</td>
-          </tr>
-        </table>
-        <li>
-          <a href="Session09.codealong/index.html">Session 9 Codealong</a>
-        </li>
-      </div>
-      
-      <!--challenges content-->
-      <div class="tabcontent" id="Challenges">
-        <li>
-          <a href="Session01.class/index.html">Session 1 Challenge</a>
-        </li>
-        <li>
-          <a href="Session02.class/tableTests/table.html">Session 2 Challenge</a>
-        </li>
-        <li>
-          <a href="Session02.assignment/contactform/index.html">Session 2 Assignment</a>
-        </li>
-        <li>
-          <a href="Session04.class/index.html">Session 4 Challenge</a>
-        </li>
-        <li>
-          <a href="Session05.class/index.html">Session 5 Challenge</a>
-        </li>
-        <li>
-          <a href="Session06.Grasshopper/index.html">Grasshopper progress</a>
-        </li>
-        <li>
-          <a href="https://bernard-lee-jia-yoong-2207.github.io/">My Github site</a>
-        </li>
-        <li>
-          <a href="Session07.class/sharing_deepfakes_barChart.html">Session 7 Challenge</a>
-        </li>
-        <li>
-          <a href="Session08.class/graduatebarChart.html">Session 8 Challenge</a>
-        </li>
-        <li>
-          Reflection
-        </li>
-        <table>
-          <tr>
-            <td><strong>What I've learnt</strong></td>
-            <td><strong>Errors encountered</strong></td>
-          </tr>
-          <tr>
-            <td>There's a large difference between the number of women enrolled in each of the courses, this is surprising because I didn't expect some courses to be more popular than others.</td>
-            <td>The default y-axis scale had too big of a maximum value to show accurately show all the data, I added an option to change the y-axis scale and maximum.</td>
-          </tr>
-        </table>
-      <li>
-        <a href="Session09.class/index.html">Session 9 Challenge</a>
-      </li>
-      </div>
-      
-      <!--project content-->
-      <div class="tabcontent" id="Project">
-        <strong>Week 7 Final Project Preliminary Idea</strong>
-        <p>
-          1. A data story of Schitt’s Creek, similar to <a href="https://public.tableau.com/app/profile/david.newman/viz/TheSimpsonsVizipedia/VisualizingTheSimpsons">The Simpsons Vizipedia</a>, can include:
-          <li>average viewership per episode</li>
-          <li>most watched episodes</li>
-          <li>most featured character/character with the most screentime</li>
-          <li>analysis of the who is most featured in each episod as the show progresses</li>
-        </p>
-        <br>
-        <p>
-          2. A treasure-hunting journey, with a map where the user has to go through (hopefully) 3-4 mini games to reach the final treasure
-          <li>mini games such as escape the maze game, spot the difference game, memory game and hangman game</li>
-          <li>for each of the mini games, users have to finish a task (solve the maze, find the difference etc.) in a certain time period, if they fail, they redo the game</li>
-          <li>there will be a overall theme (e.g. help a dragon get to the treasure) which will apply in the mini games</li>
-          <li>methods - rip and mash existing game tutorials online, and incoporating styles and content related to the overall theme</li>
-        </p>
-        <li>
-          Week 9 Update: I've decided to go with the second project idea of a game. View my storyboard below!
-          <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FnaZYfyYKSS1UsXVXlHyAUE%2F2207-storyboard%3Fnode-id%3D1-10%26scaling%3Dmin-zoom%26page-id%3D0%253A1%26starting-point-node-id%3D1%253A10" allowfullscreen></iframe>
-        </li>
-      </div>
-      </article>
 
-      <!-- Ditto the previous note about <aside>. -->
-      <aside class="tab">
-        <button class="tablinks" onclick="openTab(event,'Project')">Latest Update: Week 9 Storyboard</button>
-      </aside>
+        <!--maze content-->
+        <div class="gameContent" id="mazeGame">
+            <canvas class="gameCanvas" id="mazeGameCanvas" width="636.48px" height="458.64px"></canvas>
+            <!--
+                    I will follow this tutorial https://www.the-art-of-web.com/javascript/maze-game/ to generate a maze here.
+                    Based on the code this will entail creating classes, using for loops, if...else loops, creating Math objects, defining arrays, declaring and calling functions and some other new methods.
+                -->
 
-      <footer class="footer">
-        <p>footer</p>
-      </footer>
+
+            Sorry this is still under construction.
+            <button class="defaultButtonStyle" id="game1resetButton">Back</button>
+        </div>
+
+        <!--find the difference content-->
+        <div class="gameContent" id="diffGame">
+            <canvas class="gameCanvas" id="diffGameCanvas" width="795.6px" height="573.3px"></canvas>
+            <!--
+                    I will follow this code https://github.com/traciemasek/photohunt-frontend/blob/master/scripts/index.js to generate a find the difference mini game here.
+                    This will entail declaring variables, using functions, creating a repository of pictures, creating buttons, adding event listeners and using if...else loops.
+                -->
+            Sorry this is still under construction.
+            <button class="defaultButtonStyle" id="game2resetButton">Back</button>
+        </div>
+
+        <!--hangman content-->
+        <div class="gameContent" id="manGame">
+            <canvas class="gameCanvas" id="manGameCanvas" width="795.6px" height="573.3px"></canvas>
+            <!--
+                    I will follow this code https://codepen.io/cathydutton/pen/JjpxMm to generate a word-guessing game here.
+                    This will entail using functions, using loops, using arrays etc.
+                -->
+            Sorry this is still under construction.
+            <button class="defaultButtonStyle" id="game3resetButton">Back</button>
+        </div>
     </div>
-  
 
-  </body>
+</body>
+
 </html>
-
