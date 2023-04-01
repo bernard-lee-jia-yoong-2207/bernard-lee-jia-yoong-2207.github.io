@@ -1,8 +1,10 @@
 <!DOCTYPE html>
+<meta charset="UTF-8">
 <html lang="en">
 
 <head>
     <link rel="stylesheet" type="text/css" href="css/appstyle.css">
+    <link rel="stylesheet" type="text/css" href="css/maze.css">
     <script defer type="text/javascript" src="appscripts/main.js"></script>
     <script defer type="text/javascript" src="appscripts/maze.js"></script>
     <script defer type="text/javascript" src="appscripts/diff.js"></script>
@@ -12,8 +14,12 @@
 
 <body>
     <p>
-        <a href="https://docs.google.com/document/d/1slQ-8YWUT4HP1BiSEimuq4Rm6vm-UK2AhcAsOGUFMZU/edit?usp=sharing">Project Document</a>
-        <a href="https://www.figma.com/proto/naZYfyYKSS1UsXVXlHyAUE/2207-storyboard?node-id=1-10&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=1%3A10">Storyboard</a>
+        <strong>Submissions</strong> <br>
+        <a href="https://docs.google.com/document/d/1slQ-8YWUT4HP1BiSEimuq4Rm6vm-UK2AhcAsOGUFMZU/edit?usp=sharing">Project
+            Document</a>
+        <br>
+        <a
+            href="https://www.figma.com/proto/naZYfyYKSS1UsXVXlHyAUE/2207-storyboard?node-id=1-78&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=1%3A10">Storyboard</a>
     </p>
     <!--default content-->
     <div class="container" id="defaultContainer" width="795.6px" height="573.3px">
@@ -45,20 +51,48 @@
 
 
         <!--maze content-->
-        <div class="gameContent" id="mazeGame">
-            <canvas class="gameCanvas" id="mazeGameCanvas" width="636.48px" height="458.64px"></canvas>
+        <div class="gameContainer" id="mazeGame">
+        <p id="timer"></p>
+            <!--<canvas class="gameCanvas" id="mazeGameCanvas" width="636.48px" height="458.64px"></canvas>-->
             <!--
                     I will follow this tutorial https://www.the-art-of-web.com/javascript/maze-game/ to generate a maze here.
                     Based on the code this will entail creating classes, using for loops, if...else loops, creating Math objects, defining arrays, declaring and calling functions and some other new methods.
                 -->
-
-
-            Sorry this is still under construction.
-            <button class="defaultButtonStyle" id="game1resetButton">Back</button>
+            <div id="mapArea">
+                <div class="popup">
+                    <div class="popUpText" id="mazePopup">
+                        <p class="prompts" id="mazePrompt">
+                            Help! The knight's belongings were stolen by the thief and he's running away through the forest, go get it back!
+                            <br> <br> Use the arrow keys on your keyboard to navigate. You have one minute.
+                            <br> <br> Hint: top right corner
+                        </p>
+                        <button class="defaultButtonStyle" id="mazeStartButton">I'm ready!</button>
+                    </div>
+                    <div class="popUpText" id="mazePopupSuccess">
+                        <p class="prompts" id="mazePromptSuccess">
+                            Congratulations! You helped the knight retrieve his belongings. 
+                            <br> Let's continue the journey!
+                        </p>
+                        <button class="defaultButtonStyle" id="mazeEndButton">Let's go!</button>
+                    </div>
+                    <div class="popUpText" id="mazePopupFail">
+                        <p class="prompts" id="mazePromptFail">
+                            Uh-oh! You failed to catch up with the thief! Try again.
+                        </p>
+                        <button class="defaultButtonStyle" id="mazeTAButton">Try Again</button>
+                    </div>
+                </div>
+                <button class="backButton" id="game1resetButton">Back</button>
+                <div class="mazeMap" id="mazeMap1">
+                    <div id="tiles" class="layer"></div>
+                    <div id="sprites" class="layer"></div>
+                </div>
+                <p class="layer" id="timer">1:00</p>
+            </div>
         </div>
 
         <!--find the difference content-->
-        <div class="gameContent" id="diffGame">
+        <div class="gameContainer" id="diffGame">
             <canvas class="gameCanvas" id="diffGameCanvas" width="795.6px" height="573.3px"></canvas>
             <!--
                     I will follow this code https://github.com/traciemasek/photohunt-frontend/blob/master/scripts/index.js to generate a find the difference mini game here.
@@ -69,7 +103,7 @@
         </div>
 
         <!--hangman content-->
-        <div class="gameContent" id="manGame">
+        <div class="gameContainer" id="manGame">
             <canvas class="gameCanvas" id="manGameCanvas" width="795.6px" height="573.3px"></canvas>
             <!--
                     I will follow this code https://codepen.io/cathydutton/pen/JjpxMm to generate a word-guessing game here.
