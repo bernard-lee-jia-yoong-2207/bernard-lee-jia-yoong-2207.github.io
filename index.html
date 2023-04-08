@@ -5,6 +5,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="css/appstyle.css">
     <link rel="stylesheet" type="text/css" href="css/maze.css">
+    <link rel="stylesheet" type="text/css" href="css/diff.css">
     <script defer type="text/javascript" src="appscripts/main.js"></script>
     <script defer type="text/javascript" src="appscripts/maze.js"></script>
     <script defer type="text/javascript" src="appscripts/diff.js"></script>
@@ -15,11 +16,18 @@
 <body>
     <p>
         <strong>Submissions</strong> <br>
-        <a href="https://docs.google.com/document/d/1slQ-8YWUT4HP1BiSEimuq4Rm6vm-UK2AhcAsOGUFMZU/edit?usp=sharing">Project
-            Document</a>
+        <a href="https://docs.google.com/document/d/1slQ-8YWUT4HP1BiSEimuq4Rm6vm-UK2AhcAsOGUFMZU/edit?usp=sharing">
+            Project Document
+        </a>
         <br>
         <a
-            href="https://www.figma.com/proto/naZYfyYKSS1UsXVXlHyAUE/2207-storyboard?node-id=1-78&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=1%3A10">Storyboard</a>
+            href="https://www.figma.com/proto/naZYfyYKSS1UsXVXlHyAUE/2207-storyboard?node-id=1-78&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=1%3A10">
+            Storyboard
+        </a>
+        <br>
+        <a href="https://nm2207.org/2223S2/e0985879/web/">
+            Class Homepage
+        </a>
     </p>
     <!--default content-->
     <div class="container" id="defaultContainer" width="795.6px" height="573.3px">
@@ -52,8 +60,7 @@
 
         <!--maze content-->
         <div class="gameContainer" id="mazeGame">
-        <p id="timer"></p>
-            <!--<canvas class="gameCanvas" id="mazeGameCanvas" width="636.48px" height="458.64px"></canvas>-->
+            <p id="mazeTimer"></p>
             <!--
                     I will follow this tutorial https://www.the-art-of-web.com/javascript/maze-game/ to generate a maze here.
                     Based on the code this will entail creating classes, using for loops, if...else loops, creating Math objects, defining arrays, declaring and calling functions and some other new methods.
@@ -62,7 +69,8 @@
                 <div class="popup">
                     <div class="popUpText" id="mazePopup">
                         <p class="prompts" id="mazePrompt">
-                            Help! The knight's belongings were stolen by the thief and he's running away through the forest, go get it back!
+                            Help! The knight's belongings were stolen by the thief and he's running away through the
+                            forest, go get it back!
                             <br> <br> Use the arrow keys on your keyboard to navigate. You have one minute.
                             <br> <br> Hint: top right corner
                         </p>
@@ -70,7 +78,7 @@
                     </div>
                     <div class="popUpText" id="mazePopupSuccess">
                         <p class="prompts" id="mazePromptSuccess">
-                            Congratulations! You helped the knight retrieve his belongings. 
+                            Congratulations! You helped the knight retrieve his belongings.
                             <br> Let's continue the journey!
                         </p>
                         <button class="defaultButtonStyle" id="mazeEndButton">Let's go!</button>
@@ -87,19 +95,47 @@
                     <div id="tiles" class="layer"></div>
                     <div id="sprites" class="layer"></div>
                 </div>
-                <p class="layer" id="timer">1:00</p>
             </div>
         </div>
 
         <!--find the difference content-->
         <div class="gameContainer" id="diffGame">
-            <canvas class="gameCanvas" id="diffGameCanvas" width="795.6px" height="573.3px"></canvas>
-            <!--
+            <p id="diffTimer"></p>
+            <!--             <canvas class="gameCanvas" id="diffGameCanvas" width="795.6px" height="573.3px"></canvas>
+ --> <!--
                     I will follow this code https://github.com/traciemasek/photohunt-frontend/blob/master/scripts/index.js to generate a find the difference mini game here.
                     This will entail declaring variables, using functions, creating a repository of pictures, creating buttons, adding event listeners and using if...else loops.
                 -->
-            Sorry this is still under construction.
-            <button class="defaultButtonStyle" id="game2resetButton">Back</button>
+            <div id="diffArea">
+                <div class="popup">
+                    <div class="popUpText" id="diffPopup">
+                        <p class="prompts" id="diffPrompt">
+                            You come across a mysterious tool shed, and see some useful items.
+                            <br> <br> Pick up all the items you need! You have one minute.
+                            <br> <br> Hint: water, compass, lighter, snack bar, apple, dagger
+                        </p>
+                        <button class="defaultButtonStyle" id="diffStartButton">I'm ready!</button>
+                    </div>
+                    <div class="popUpText" id="diffPopupSuccess">
+                        <p class="prompts" id="diffPromptSuccess">
+                            Congratulations!
+                            <br> Let's continue the journey!
+                        </p>
+                        <button class="defaultButtonStyle" id="diffEndButton">Let's go!</button>
+                    </div>
+                    <div class="popUpText" id="mazePopupFail">
+                        <p class="prompts" id="mazePromptFail">
+                            Uh-oh! You failed Try again.
+                        </p>
+                        <button class="defaultButtonStyle" id="diffTAButton">Try Again</button>
+                    </div>
+                </div>
+                <button class="backButton" id="game2resetButton">Back</button>
+                <div class="diffFrame" id="photo-container">
+                </div>
+                <div class="diffFooter" id="footer-counter">
+                </div>
+            </div>
         </div>
 
         <!--hangman content-->

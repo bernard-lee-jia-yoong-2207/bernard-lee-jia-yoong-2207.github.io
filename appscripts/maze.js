@@ -1,12 +1,19 @@
-function closepopup(popupNumber) {
-    var popup = document.getElementById(popupNumber);
+function closepopup(popupId) {
+    var popup = document.getElementById(popupId);
+    popup.classList.remove("show");
     popup.classList.toggle("close");
 };
 
-document.getElementById("mazeStartButton").addEventListener("click", function () {
+function popup(popupId) {
+    var popup = document.getElementById(popupId);
+    popup.classList.remove("close");
+    popup.classList.toggle("show");
+}
+
+/* document.getElementById("mazeStartButton").addEventListener("click", function () {
     closepopup("mazePopup");
     this.className += " active";
-});
+}); */
 
 //this code references js-maze-game-1 by nevkatz on GitHub with some modification
 
@@ -73,6 +80,7 @@ function Game(id, level) {
     this.goal = { ...level.goal };
 
     this.player.el = null;
+    this.gameOver = false;
 }
 
 //object method to insert tile in HTML
@@ -134,16 +142,13 @@ Game.prototype.placeSprite = function (type) {
 
 //object method to move the player
 Game.prototype.movePlayer = function (event) {
+
+    if (this.gameOver == true) return;
+
     //make sure that keys other than the arrow keys do not work
     event.preventDefault();
     if (event.keyCode < 37 || event.keyCode > 40) {
         return;
-    }
-
-    //check if the player has reached the goal
-    else if (this.player.y == this.goal.y &&
-        this.player.x == this.goal.x) {
-            return;
     }
 
     //use switch case to determine the action for each arrow key
@@ -261,22 +266,21 @@ Game.prototype.updateHoriz = function () {
     this.player.el.style.left = this.player.x * this.tileDim + 'px';
 }
 
-//add keyboard listenser for keyboard events
-Game.prototype.keyboardListener = function () {
-    document.addEventListener('keydown', event => {
+function myListener(event) {
+    //call the movePlayer method when arrow keys are pressed
+    myGame.movePlayer(event);
 
-        //call the movePlayer method when arrow keys are pressed
-        this.movePlayer(event);
-
-        //check whether the player has reached the goal
-        this.checkGoal();
-    })
+    //check whether the player has reached the goal
+    myGame.checkGoal();
 }
 
-function popup(popupNumber) {
-    var popup = document.getElementById(popupNumber);
-    popup.className += " show";
-  }
+//add keyboard listenser for keyboard events
+Game.prototype.keyboardListener = function () {
+
+    document.removeEventListener('keydown', myListener);
+    document.addEventListener('keydown', myListener);
+}
+
 
 Game.prototype.checkGoal = function () {
     //if the coordinates of the player is the same as the pre-defined coordinates of the goal
@@ -284,11 +288,13 @@ Game.prototype.checkGoal = function () {
     let body = document.querySelector('body');
     if (this.player.y == this.goal.y &&
         this.player.x == this.goal.x) {
+        this.gameOver = true;
         body.className = "success";
         popup("mazePopupSuccess");
+        document.removeEventListener('keydown', myListener)
     }
 
-    //otherwise body's class remain the same
+    //otherwise body's class remains the same
     else {
         body.className = '';
     }
@@ -306,35 +312,68 @@ Game.prototype.collide = function () {
     return 0;
 }
 
+let backButton = document.getElementById("game1resetButton")
+
 //function to run timer referncing Florin Pop's 'Simple Countdown Timer with JavaScript - Day 21' on YouTube
-const startingMin = 59/60;
+const startingMin = 59 / 60;
 let time = startingMin * 60;
 const stoppingTime = 0;
-function updateCountdown() {
-    const timerEl = document.getElementById("timer");
-    const mins = Math.floor(time / 60);
-    let seconds = time % 60;
 
-    seconds = seconds < 10 ? '0' + seconds : seconds;
+function timer() {
 
-    timerEl.innerHTML = mins + ":" + seconds;
+    var timerId = setInterval(function () {
+        const timerEl = document.getElementById("mazeTimer");
+        const mins = Math.floor(time / 60);
+        let seconds = time % 60;
+
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+
+        timerEl.innerHTML = mins + ":" + seconds;
+
+        //stops the timer when the number of seconds reaches 0
+        if (time == stoppingTime) {
+            myGame.gameOver = true;
+            clearInterval(timerId);
+            timerId = false;
+            popup("mazePopupFail");
+            return
+        }
+
+        backButton.addEventListener("click", function () {
+            clearInterval(timerId);
+        })
 
 
-    //stops the timer when the number of seconds reaches 0
-    if(time == stoppingTime) {
-        clearInterval(updateCountdown);
-        popup("mazePopupFail");
-        return
-    }
+        if (myGame.gameOver == true) {
+            clearInterval(timerId);
+        }
 
-    time--;
+        time--;
 
-    time = time < 0 ? 0 : time;    
-    console.log(time);
+        time = time < 0 ? 0 : time;
+    }, 1000)
+    return
 }
 
-function init() {
-    let myGame = new Game('mazeGame', levels[0]);
+let TAButton = document.getElementById("mazeTAButton");
+TAButton.addEventListener("click", function () {
+    closepopup("mazePopupFail");
+    resetMaze();
+})
+
+function resetMaze() {
+    setTimeout(popup, 500, "mazePopup");
+    let sprites = document.getElementById("sprites");
+    while (sprites.hasChildNodes()) {
+        sprites.removeChild(sprites.firstChild);
+    }
+    let tiles = document.getElementById("tiles");
+    while (tiles.hasChildNodes()) {
+        tiles.removeChild(tiles.firstChild);
+    }
+    myGame.player.x = 2;
+    myGame.player.y = 28;
+    myGame.gameOver = false;
     myGame.populateMap();
     myGame.sizeUp();
     myGame.placeSprite('goal');
@@ -343,8 +382,12 @@ function init() {
     let startButton = document.getElementById("mazeStartButton");
     startButton.addEventListener("click", function () {
         myGame.keyboardListener();
-        setInterval(updateCountdown, 1000);
-    })
+        time = startingMin * 60;
+        timer();
+        closepopup("mazePopup");
+    }, { once: true });
 }
 
-init();
+const myGame = new Game('mazeGame', levels[0]);
+
+// problem: the success message disappears when i click any button after reaching goal

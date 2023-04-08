@@ -13,8 +13,15 @@
 }
 
 #mazeStartButton {
+    left: 37.5%;
     width: 25%;
     top: 70%;
+}
+
+#mazeTAButton, #mazeEndButton {
+    left: 37.5%;
+    width: 25%;
+    top: 55%;
 }
 
 #mazePromptSuccess, #mazePromptFail {
@@ -29,11 +36,6 @@
     margin: 0px auto;
     text-align: center;
 }
-
-/* body.success {
-    background-color: #b7f0b7;
-    transition: 0.2s ease;
-} */
 
 #mapArea {
     display: flex;

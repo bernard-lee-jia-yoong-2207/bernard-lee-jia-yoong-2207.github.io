@@ -19,20 +19,6 @@ body {
     justify-content: center;
 }
 
-/* .gameCanvas {
-    position: absolute;
-    margin: auto;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-
-#mazeGameCanvas {
-    background-color: #3cb043;
-    z-index: -1;
-} */
-
 #Game_1 {
     position: absolute;
     margin: auto;
@@ -250,7 +236,7 @@ body {
     line-height: 30px;
 }
 
-#timer {
+#mazeTimer {
     text-align:left;
     padding: 15% 5%;
     font-size: 20px;

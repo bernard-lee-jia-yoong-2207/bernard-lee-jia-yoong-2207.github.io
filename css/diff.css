@@ -1,0 +1,78 @@
+#diffPopup, #diffPopupSuccess, #diffPopupFail {
+    width: 636.48px;
+    height: 458.64px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #FFF;
+    text-align: center;
+    position: absolute;
+}
+
+#diffPrompt {
+    padding: 10% 5%;
+    font-size: 25px;
+}
+
+#diffStartButton {
+    left: 37.5%;
+    width: 25%;
+    top: 70%;
+}
+
+#diffTAButton, #diffEndButton {
+    left: 37.5%;
+    width: 25%;
+    top: 55%;
+}
+
+#diffPromptSuccess, #diffPromptFail {
+    padding: 20% 5%;
+    font-size: 25px;
+}
+
+#diffArea {
+    display: flex;
+    justify-content: center;
+}
+
+.diffFrame {
+    height: 522px;
+    width: 620px;
+    background-color: azure;
+    position: absolute;
+    top: 25px;
+    left: 130px;
+}
+
+#leftPic {
+    position: absolute;
+    left: 0px;
+}
+
+#rightPic {
+    position: absolute;
+    left: 310px;
+}
+
+.counterCircles {
+    font-size: 15px;
+    padding: 10px;
+    border-radius: 30px;
+}
+
+/* .counterCircles::after {
+    content: "\2714";
+    font-size: 13px;
+} */
+
+/* what's this for?? */
+.gameOverCircle {
+    position: absolute;
+    height: 40px;
+    width: 40px; 
+} 
+
+#diffTimer {
+    text-align:left;
+    padding: 15% 5%;
+    font-size: 20px;
+}
