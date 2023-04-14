@@ -298,7 +298,7 @@ Game.prototype.collide = function () {
 function mazeTimer() {
     mazeStartingMin = 59 / 60;
     mazeTime = mazeStartingMin * 60;
-    mazeStoppingTime = 58;
+    mazeStoppingTime = 0;
     
     var mazeTimerId = setInterval(function () {
         const mazeTimerEl = document.getElementById("mazeTimer");

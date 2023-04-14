@@ -83,7 +83,7 @@ function setScene() {
 function diffTimer() {
     diffStartingMin = 59 / 60;
     diffTime = diffStartingMin * 60;
-    diffStoppingTime = 58;
+    diffStoppingTime = 0;
 
     diffTimerId = setInterval(function () {
         const diffTimerEl = document.getElementById("diffTimer");
