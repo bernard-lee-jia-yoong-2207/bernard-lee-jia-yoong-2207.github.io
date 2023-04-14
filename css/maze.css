@@ -18,33 +18,23 @@
     top: 70%;
 }
 
-#mazeTAButton, #mazeEndButton {
+#mazeTAButton, 
+#mazeEndButton {
     left: 37.5%;
     width: 25%;
     top: 55%;
 }
 
-#mazePromptSuccess, #mazePromptFail {
+#mazePromptSuccess, 
+#mazePromptFail {
     padding: 20% 5%;
     font-size: 25px;
-}
-
-.gameContainer {
-    background-color: greenyellow;
-    width: 795.6px; 
-    height: 573.3px;
-    margin: 0px auto;
-    text-align: center;
+    line-height:30px;
 }
 
 #mapArea {
     display: flex;
     justify-content: center;
-}
-
-p {
-    margin: 10px 0px;
-    padding: 0px;
 }
 
 .mazeMap {
@@ -57,24 +47,12 @@ div.layer, div.layer div {
     position: absolute;
 }
 
-/* #tiles div {
-    border: 1px solid darkgreen;
-} */
-
-.floor {
-    background-color: greenyellow;
-}
-
 .wall::before {
     content: "\01f332";
     font-size: 13px;
 }
 
-.wall {
-    background-color: greenyellow;
-}
-
-.player, .goal {
+.goal {
     transform-origin: center;
     transform: scale(0.85);
 }
@@ -85,35 +63,14 @@ div.layer, div.layer div {
 }
 
 .player {
-    /* background-color: #90ee90;
-    border: 1px solid green; */
+    transform-origin: center;
+    transform: scale(0.85);
     transition: left 0.2s linear, top 0.2s linear;
 }
 
 .goal::before {
     content: "\1F9B9";
     font-size: 16px;
-}
-
-/* .goal {
-    background-color: #ffd700;
-    border: 1px solid #98720b;
-} */
-
-/* #mazePopupSuccess {
-    opacity: 0;
-    transition: opacity 0.2s ease;
-    position: relative;
-    padding: 5px 5px;
-    background-color: rgba(0,0,0,0.5);
-    color: white;
-    width: 100%;
-} */
-
-body.success #mazePopupSuccess,
-body.success #mazePopupFail {
-    opacity: 1;
-    transition: opacity 0.2s ease;
 }
 
 @keyframes wobble {

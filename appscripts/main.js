@@ -18,12 +18,19 @@ function openGame(evt, tabName) {
     tablinks[i].style.display = "none";
   }
 
+  //start/reset maze game when game 1 button is clicked
   if (tabName === "mazeGame") {
     resetMaze();
   }
 
+  //start/reset find the difference game when game 2 button is clicked
   if (tabName === "diffGame") {
     resetDiff();
+  }
+
+  //start/reset hangman game when game 3 button is clicked
+  if (tabName === "manGame") {
+    resetMan();
   }
 
   document.getElementById(tabName).style.display = "block";
@@ -64,50 +71,62 @@ function closepopup(popupId) {
   popup.classList.toggle("close");
 }
 
-//functions to enable and disable game buttons
-function enablegame(game_number) {
-  document.getElementById(game_number).disabled = false;
+//functions to enable and disable game/back buttons
+function enableButton(buttonId) {
+  document.getElementById(buttonId).disabled = false;
 }
 
-function disablegame(game_number) {
-  document.getElementById(game_number).disabled = true;
+function disableButton(buttonId) {
+  document.getElementById(buttonId).disabled = true;
 }
 
-//enablegame("Game_1");
-//enablegame("Game_2");
-
-//remember to enable this!!
-setTimeout(popup, 1000, "popup1");
+//popup to begin the game
+setTimeout(popup, 500, "popup1");
 document.getElementById("beginButton").addEventListener("click", function () {
   closepopup("popup1");
   setTimeout(popup, 1000, "popup2");
   setTimeout(closepopup, 4000, "popup2");
   setTimeout(popup, 5500, "popup3");
-  setTimeout(enablegame, 8500, "Game_1");
+  setTimeout(enableButton, 8500, "Game_1");
   setTimeout(closepopup, 9000, "popup3");
 });
 
+//listeners for the end buttons for each game
 document.getElementById("mazeEndButton").addEventListener("click", function () {
   backHome();
-  disablegame("Game_1");
-  enablegame("Game_2");
+  disableButton("Game_1");
+  enableButton("Game_2");
 })
 
-document.getElementById("game1resetButton").addEventListener("click", function () {
+document.getElementById("diffEndButton").addEventListener("click", function () {
   backHome();
+  disableButton("Game_2");
+  enableButton("Game_3");
 })
 
-//this part is just for milestone submission, please change!!!
-document.getElementById("game2resetButton").addEventListener("click", function () {
+document.getElementById("manEndButton").addEventListener("click", function () {
   backHome();
-  //document.getElementById("Game_1").className += " active";
-  //disablegame("Game_2");
-  //enablegame("Game_3");
+  disableButton("Game_3");
+  setTimeout(popup, 500, "finalPopup")
 })
 
-document.getElementById("game3resetButton").addEventListener("click", function () {
-  backHome();
-  //document.getElementById("Game_1").className += " active";
-  //document.getElementById("Game_2").className += " active";
-  disablegame("Game_3");
+//listener and embed video function for the treasure chest image in the final popup
+document.getElementById("treasureChestImage").addEventListener("click", openChest)
+
+function openChest() {
+  closepopup("finalPopup");
+  popup("videoPopup");
+  let videoHolder = document.getElementById("videoHolder");
+  videoHolder.innerHTML = `
+    <video id = "chestVideo" width="636" height="458">
+      <source src = "./resources/treasure_chest_video.mp4" type = "video/mp4">
+    </video>
+  `
+  document.getElementById("chestVideo").play();
+  setTimeout(popup, 7500, "chestPopup");
+}
+
+//listener to restart the game by reloading the website
+document.getElementById("replayButton").addEventListener("click", function () {
+  window.location.reload();
 })

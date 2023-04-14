@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/appstyle.css">
     <link rel="stylesheet" type="text/css" href="css/maze.css">
     <link rel="stylesheet" type="text/css" href="css/diff.css">
+    <link rel="stylesheet" type="text/css" href="css/hangman.css">
     <script defer type="text/javascript" src="appscripts/main.js"></script>
     <script defer type="text/javascript" src="appscripts/maze.js"></script>
     <script defer type="text/javascript" src="appscripts/diff.js"></script>
@@ -33,7 +34,7 @@
     <div class="container" id="defaultContainer" width="795.6px" height="573.3px">
         <canvas class="defaultContent" id="mainCanvas" width="795.6px" height="573.3px"></canvas>
 
-        <!--popups-->
+        <!--main interface popups-->
         <div class="popup">
             <div class="popUpText" id="popup1">
                 <p class="prompts" id="promptText1">Welcome. I assume you’re here because you saw the notice. The knight
@@ -48,6 +49,27 @@
                 <p class="prompts" id="promptText3">Complete the tasks in order and within the time limit. Good luck!
                 </p>
             </div>
+            <div class="popUpText" id="finalPopup">
+                <div id="chestContainer">
+                    <img src="./resources/treasure_chest.png" id="treasureChestImage">
+                </div>
+                <p class="prompts" id="finalPrompt">
+                    Congratulations for completing all of your tasks and reaching the final treasure! You've earned the
+                    knight's trust.
+                    <br> <br>
+                    Open the treasure chest now!
+                </p>
+            </div>
+            <div class="popUpText" id="chestPopup">
+                <p class="prompts" id="chestPrompt">The real treasure are the friends you made along the way.
+                    <br> Thank you for playing this game. 
+                    <br> <span id="credits">Huge shoutout to Jeremiah for helping me with my game. Please don't give up on your dream and die.</span>
+                </p>
+                <button class="defaultButtonStyle" id="replayButton">Replay</button>
+            </div>
+            <div class="popUpText" id="videoPopup">
+                <div id="videoHolder"></div>
+            </div>
         </div>
 
         <!--tabs-->
@@ -58,14 +80,12 @@
         </div>
 
 
-        <!--maze content-->
+        <!--maze interface-->
         <div class="gameContainer" id="mazeGame">
-            <p id="mazeTimer"></p>
-            <!--
-                    I will follow this tutorial https://www.the-art-of-web.com/javascript/maze-game/ to generate a maze here.
-                    Based on the code this will entail creating classes, using for loops, if...else loops, creating Math objects, defining arrays, declaring and calling functions and some other new methods.
-                -->
+            <!--maze timer holder-->
+            <p class="timers" id="mazeTimer"></p>
             <div id="mapArea">
+                <!--maze game popups-->
                 <div class="popup">
                     <div class="popUpText" id="mazePopup">
                         <p class="prompts" id="mazePrompt">
@@ -85,12 +105,13 @@
                     </div>
                     <div class="popUpText" id="mazePopupFail">
                         <p class="prompts" id="mazePromptFail">
-                            Uh-oh! You failed to catch up with the thief! Try again.
+                            Uh-oh! You failed to catch up <br> with the thief!
                         </p>
                         <button class="defaultButtonStyle" id="mazeTAButton">Try Again</button>
                     </div>
                 </div>
                 <button class="backButton" id="game1resetButton">Back</button>
+                <!--maze game map content-->
                 <div class="mazeMap" id="mazeMap1">
                     <div id="tiles" class="layer"></div>
                     <div id="sprites" class="layer"></div>
@@ -98,58 +119,85 @@
             </div>
         </div>
 
-        <!--find the difference content-->
+        <!--find the difference interface-->
         <div class="gameContainer" id="diffGame">
-            <p id="diffTimer"></p>
-            <!--             <canvas class="gameCanvas" id="diffGameCanvas" width="795.6px" height="573.3px"></canvas>
- --> <!--
-                    I will follow this code https://github.com/traciemasek/photohunt-frontend/blob/master/scripts/index.js to generate a find the difference mini game here.
-                    This will entail declaring variables, using functions, creating a repository of pictures, creating buttons, adding event listeners and using if...else loops.
-                -->
+            <!--find the difference timer holder-->
+            <p class="timers" id="diffTimer"></p>
+            <!--find the difference item list holder-->
+            <p id="itemList"></p>
             <div id="diffArea">
+                <!--find the difference popups-->
                 <div class="popup">
                     <div class="popUpText" id="diffPopup">
                         <p class="prompts" id="diffPrompt">
                             You come across a mysterious tool shed, and see some useful items.
                             <br> <br> Pick up all the items you need! You have one minute.
-                            <br> <br> Hint: water, compass, lighter, snack bar, apple, dagger
+                            <br> <br> Hint: find the difference between left and right!
                         </p>
                         <button class="defaultButtonStyle" id="diffStartButton">I'm ready!</button>
                     </div>
                     <div class="popUpText" id="diffPopupSuccess">
                         <p class="prompts" id="diffPromptSuccess">
-                            Congratulations!
-                            <br> Let's continue the journey!
+                            Congratulations! You are now equipped to continue the journey!
+                            <br> Let's go!
                         </p>
                         <button class="defaultButtonStyle" id="diffEndButton">Let's go!</button>
                     </div>
-                    <div class="popUpText" id="mazePopupFail">
-                        <p class="prompts" id="mazePromptFail">
-                            Uh-oh! You failed Try again.
+                    <div class="popUpText" id="diffPopupFail">
+                        <p class="prompts" id="diffPromptFail">
+                            Uh-oh! You didn't grab the items in time. But that's fine!
                         </p>
                         <button class="defaultButtonStyle" id="diffTAButton">Try Again</button>
                     </div>
                 </div>
                 <button class="backButton" id="game2resetButton">Back</button>
-                <div class="diffFrame" id="photo-container">
+                <!--find the difference content-->
+                <div class="diffFrame" id="photoContainer"></div>
+                <div class="diffFooter" id="footerCounter"></div>
+            </div>
+        </div>
+        <!--hangman interface-->
+        <div class="gameContainer" id="manGame">
+            <!--hangman timer holder-->
+            <p class="timers" id="manTimer"></p>
+            <div id="manArea">
+                <!--hangman popups-->
+                <div class="popup">
+                    <div class="popUpText" id="manPopup">
+                        <p class="prompts" id="manPrompt">
+                            Oh no! You come across a mysterious man named Jerry, and he wouldn't let you pass unless you
+                            solve his little game.
+                            <br> <br> Answer him! You have 10 lives or 1 minute to complete this.
+                            <br> <br> Hint: a four-digit number.
+                        </p>
+                        <button class="defaultButtonStyle" id="manStartButton">I'm ready!</button>
+                    </div>
+                    <div class="popUpText" id="manPopupSuccess">
+                        <p class="prompts" id="manPromptSuccess">
+                            You did it! Jerry approves of your intellectual ability and decides to let you move on.
+                            Let's go!
+                        </p>
+                        <button class="defaultButtonStyle" id="manEndButton">Let's go!</button>
+                    </div>
+                    <div class="popUpText" id="manPopupFail">
+                        <p class="prompts" id="manPromptFail">
+                            Oops! Jerry is angry that you didn't manage to answer him.
+                            <br> Try again.
+                        </p>
+                        <button class="defaultButtonStyle" id="manTAButton">Try Again</button>
+                    </div>
                 </div>
-                <div class="diffFooter" id="footer-counter">
+                <button class="backButton" id="game3resetButton">Back</button>
+                <!--hangman content-->
+                <div id="manContainer">
+                    <canvas id="stickman"></canvas>
+                    <div id="manWordSpace"></div>
+                    <div id="manButtons"></div>
                 </div>
             </div>
         </div>
-
-        <!--hangman content-->
-        <div class="gameContainer" id="manGame">
-            <canvas class="gameCanvas" id="manGameCanvas" width="795.6px" height="573.3px"></canvas>
-            <!--
-                    I will follow this code https://codepen.io/cathydutton/pen/JjpxMm to generate a word-guessing game here.
-                    This will entail using functions, using loops, using arrays etc.
-                -->
-            Sorry this is still under construction.
-            <button class="defaultButtonStyle" id="game3resetButton">Back</button>
-        </div>
     </div>
-
+    </div>
+    </div>
 </body>
-
 </html>

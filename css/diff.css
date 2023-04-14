@@ -1,4 +1,6 @@
-#diffPopup, #diffPopupSuccess, #diffPopupFail {
+#diffPopup,
+#diffPopupSuccess,
+#diffPopupFail {
     width: 636.48px;
     height: 458.64px;
     background-color: rgba(0, 0, 0, 0.8);
@@ -18,15 +20,34 @@
     top: 70%;
 }
 
-#diffTAButton, #diffEndButton {
+#diffTAButton,
+#diffEndButton {
     left: 37.5%;
     width: 25%;
     top: 55%;
 }
 
-#diffPromptSuccess, #diffPromptFail {
+#diffPromptSuccess,
+#diffPromptFail {
     padding: 20% 5%;
     font-size: 25px;
+    line-height: 30px;
+}
+
+.diffCircle {
+    opacity: 0;
+    height: 60px;
+    width: 60px;
+}
+
+.circle {
+    height: 60px;
+    width: 60px;
+}
+
+.circle > img {
+    height: 100%;
+    width: 100%;
 }
 
 #diffArea {
@@ -34,45 +55,141 @@
     justify-content: center;
 }
 
-.diffFrame {
-    height: 522px;
+#photoContainer {
+    height: 440px;
     width: 620px;
     background-color: azure;
     position: absolute;
     top: 25px;
     left: 130px;
+    display: block;
 }
 
-#leftPic {
-    position: absolute;
-    left: 0px;
+#photoContainer>img {
+    display: block;
+    position: relative;
 }
 
-#rightPic {
+#footerCounter {
     position: absolute;
-    left: 310px;
+    display: block;
+    top: 465px;
+    left:130px;
+    height: 80px;
+    width: 620px;
+    text-align: center;
+    background-color: lightgoldenrodyellow;
+    display: flex;
+    justify-content: center;
+}
+
+.diffFooter {
+    position: absolute;
+    
 }
 
 .counterCircles {
-    font-size: 15px;
-    padding: 10px;
-    border-radius: 30px;
+    font-size: 20px;
+    padding: 20px;
+    border-radius: 50%;
+    background-color: lightgray;
+    height: 13px;
+    position: relative;
+    top: 10px;
+    margin: 0px 20px;
 }
 
-/* .counterCircles::after {
-    content: "\2714";
-    font-size: 13px;
-} */
 
-/* what's this for?? */
-.gameOverCircle {
-    position: absolute;
-    height: 40px;
-    width: 40px; 
-} 
+.counterCircles.green {
+    background-color: green;
+    font-size: 20px;
+}
 
 #diffTimer {
-    text-align:left;
+    text-align: left;
     padding: 15% 5%;
     font-size: 20px;
+}
+
+#circle1L { /*compass*/
+    position: absolute;
+    left: 240px;
+    top: 56px;
+}
+
+#circle1R {
+    position: absolute;
+    left: 544px;
+    top: 56px;
+}
+
+#circle2L { /*water*/
+    position: absolute;
+    left: 263px;
+    top: 195px;
+}
+
+#circle2R {
+    position: absolute;
+    left: 567px;
+    top: 195px;
+}
+
+#circle3L { /*lighter*/
+    position: absolute;
+    left: 60px;
+    top: 285px;
+}
+
+#circle3R {
+    position: absolute;
+    left: 365px;
+    top: 285px;
+}
+
+#circle4L { /*dagger*/
+    position: absolute;
+    left: 178px;
+    top: 130px;
+}
+
+#circle4R {
+    position: absolute;
+    left: 483px;
+    top: 130px;
+}
+
+#circle5L { /*apple*/
+    position: absolute;
+    left: 96px;
+    top: 105px;
+}
+
+#circle5R {
+    position: absolute;
+    left: 401px;
+    top: 105px;
+}
+
+#circle6L { /*bar*/
+    position: absolute;
+    left: 75px;
+    top: 185px;
+}
+
+#circle6R {
+    position: absolute;
+    left: 380px;
+    top: 185px;
+}
+
+#itemList {
+    text-align: left;
+    margin-left: 20px;
+    font-size: 18px;
+    line-height: 30px;
+}
+
+.item.found{
+    text-decoration: line-through;
 }
